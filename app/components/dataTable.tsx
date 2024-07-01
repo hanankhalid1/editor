@@ -1,3 +1,5 @@
+// components/DataTable.js
+
 import React from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -8,7 +10,7 @@ const DataTable = ({ data, setData, setEditingData } : any) => {
     try {
       const response = await axios.delete('/api/deleteData', { data: { id } });
       if (response.status === 200) {
-        setData(data.filter(row => row.data_id !== id));
+        setData(data.filter((row: { data_id: any; }) => row.data_id !== id));
         toast.success('Item deleted successfully!');
       }
     } catch (error) {
@@ -17,7 +19,7 @@ const DataTable = ({ data, setData, setEditingData } : any) => {
     }
   };
 
-  const handleEdit = (row: any) => {
+  const handleEdit = (row : any) => {
     setEditingData({
       id: row.data_id,
       title: row.title,
@@ -47,7 +49,13 @@ const DataTable = ({ data, setData, setEditingData } : any) => {
                 <td className="py-3 px-4 border-b border-gray-200">{row.data_id}</td>
                 <td className="py-3 px-4 border-b border-gray-200">{row.title}</td>
                 <td className="py-3 px-4 border-b border-gray-200">{row.description}</td>
-                <td className="py-3 px-4 border-b border-gray-200">{row.imageString}</td>
+                <td className="py-3 px-4 border-b border-gray-200">
+                  {row.imageString ? (
+                    <img src={row.imageString} alt="Image" className="h-20 w-auto object-contain" />
+                  ) : (
+                    'No Image'
+                  )}
+                </td>
                 <td className="py-3 px-4 border-b border-gray-200">{new Date(row.created_date).toLocaleString()}</td>
                 <td className="py-3 px-4 border-b border-gray-200 flex justify-between">
                   <button
