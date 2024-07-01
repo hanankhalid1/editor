@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
@@ -7,7 +7,6 @@ import DataTable from './dataTable';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Dynamically import ReactQuill to prevent SSR issues
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const EditorForm = () => {
@@ -75,7 +74,7 @@ const EditorForm = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl w-full bg-white p-10 shadow-xl rounded-lg">
+      <div className="max-w-6xl w-full bg-white p-10 shadow-xl rounded-lg"> {/* Increased max-width here */}
         <ToastContainer />
         <h2 className="text-center text-3xl font-bold text-gray-900 mb-8">
           Editor Form
